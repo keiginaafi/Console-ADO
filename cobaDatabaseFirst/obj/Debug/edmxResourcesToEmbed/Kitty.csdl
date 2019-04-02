@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cobaArrayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MyContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TB_M_Item" EntityType="cobaArrayModel.TB_M_Item" />
+    <EntitySet Name="TB_M_Sell" EntityType="cobaArrayModel.TB_M_Sell" />
+    <EntitySet Name="TB_M_Suppliers" EntityType="cobaArrayModel.TB_M_Suppliers" />
+    <EntitySet Name="TB_T_Detail" EntityType="cobaArrayModel.TB_T_Detail" />
+    <AssociationSet Name="FK_dbo_Items_dbo_Suppliers_Suppliers_Id1" Association="cobaArrayModel.FK_dbo_Items_dbo_Suppliers_Suppliers_Id1">
+      <End Role="TB_M_Suppliers" EntitySet="TB_M_Suppliers" />
+      <End Role="TB_M_Item" EntitySet="TB_M_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_T_Detail_Items" Association="cobaArrayModel.FK_TB_T_Detail_Items">
+      <End Role="TB_M_Item" EntitySet="TB_M_Item" />
+      <End Role="TB_T_Detail" EntitySet="TB_T_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_to_Sell" Association="cobaArrayModel.FK_to_Sell">
+      <End Role="TB_M_Sell" EntitySet="TB_M_Sell" />
+      <End Role="TB_T_Detail" EntitySet="TB_T_Detail" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TB_M_Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="TB_M_Suppliers" Relationship="cobaArrayModel.FK_dbo_Items_dbo_Suppliers_Suppliers_Id1" FromRole="TB_M_Item" ToRole="TB_M_Suppliers" />
+    <NavigationProperty Name="TB_T_Detail" Relationship="cobaArrayModel.FK_TB_T_Detail_Items" FromRole="TB_M_Item" ToRole="TB_T_Detail" />
+  </EntityType>
+  <EntityType Name="TB_M_Sell">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TB_T_Detail" Relationship="cobaArrayModel.FK_to_Sell" FromRole="TB_M_Sell" ToRole="TB_T_Detail" />
+  </EntityType>
+  <EntityType Name="TB_M_Suppliers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TB_M_Item" Relationship="cobaArrayModel.FK_dbo_Items_dbo_Suppliers_Suppliers_Id1" FromRole="TB_M_Suppliers" ToRole="TB_M_Item" />
+  </EntityType>
+  <EntityType Name="TB_T_Detail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" />
+    <NavigationProperty Name="TB_M_Item" Relationship="cobaArrayModel.FK_TB_T_Detail_Items" FromRole="TB_T_Detail" ToRole="TB_M_Item" />
+    <NavigationProperty Name="TB_M_Sell" Relationship="cobaArrayModel.FK_to_Sell" FromRole="TB_T_Detail" ToRole="TB_M_Sell" />
+  </EntityType>
+  <Association Name="FK_dbo_Items_dbo_Suppliers_Suppliers_Id1">
+    <End Type="cobaArrayModel.TB_M_Suppliers" Role="TB_M_Suppliers" Multiplicity="0..1" />
+    <End Type="cobaArrayModel.TB_M_Item" Role="TB_M_Item" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TB_T_Detail_Items">
+    <End Type="cobaArrayModel.TB_M_Item" Role="TB_M_Item" Multiplicity="0..1" />
+    <End Type="cobaArrayModel.TB_T_Detail" Role="TB_T_Detail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_to_Sell">
+    <End Type="cobaArrayModel.TB_M_Sell" Role="TB_M_Sell" Multiplicity="0..1" />
+    <End Type="cobaArrayModel.TB_T_Detail" Role="TB_T_Detail" Multiplicity="*" />
+  </Association>
+</Schema>

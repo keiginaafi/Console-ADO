@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="cobaArrayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+  <EntityType Name="TB_M_Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Suppliers_Id" Type="int" />
+    <Property Name="IsDelete" Nullable="false" Type="bit" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Price" Type="int" />
+  </EntityType>
+  <EntityType Name="TB_M_Sell">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="int" />
+    <Property Name="OrderDate" Type="date" />
+  </EntityType>
+  <EntityType Name="TB_M_Suppliers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="IsDelete" Nullable="false" Type="bit" />
+  </EntityType>
+  <EntityType Name="TB_T_Detail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="int" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="TB_M_Sell_Id" Type="int" />
+    <Property Name="TB_M_Items_Id" Type="int" />
+  </EntityType>
+  <Association Name="FK_dbo_Items_dbo_Suppliers_Suppliers_Id">
+    <End Type="Self.TB_M_Suppliers" Multiplicity="0..1" Role="TB_M_Suppliers" />
+    <End Type="Self.TB_M_Item" Multiplicity="*" Role="TB_M_Item" />
+    <ReferentialConstraint>
+      <Principal Role="TB_M_Suppliers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TB_M_Item">
+        <PropertyRef Name="Suppliers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_T_Detail_Items">
+    <End Type="Self.TB_M_Item" Multiplicity="0..1" Role="TB_M_Item" />
+    <End Type="Self.TB_T_Detail" Multiplicity="*" Role="TB_T_Detail" />
+    <ReferentialConstraint>
+      <Principal Role="TB_M_Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TB_T_Detail">
+        <PropertyRef Name="TB_M_Items_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_to_Sell">
+    <End Type="Self.TB_M_Sell" Multiplicity="0..1" Role="TB_M_Sell" />
+    <End Type="Self.TB_T_Detail" Multiplicity="*" Role="TB_T_Detail" />
+    <ReferentialConstraint>
+      <Principal Role="TB_M_Sell">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TB_T_Detail">
+        <PropertyRef Name="TB_M_Sell_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="cobaArrayModelStoreContainer">
+    <EntitySet Name="TB_M_Item" EntityType="Self.TB_M_Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_M_Sell" EntityType="Self.TB_M_Sell" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_M_Suppliers" EntityType="Self.TB_M_Suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_T_Detail" EntityType="Self.TB_T_Detail" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Items_dbo_Suppliers_Suppliers_Id" Association="Self.FK_dbo_Items_dbo_Suppliers_Suppliers_Id">
+      <End EntitySet="TB_M_Suppliers" Role="TB_M_Suppliers" />
+      <End EntitySet="TB_M_Item" Role="TB_M_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_T_Detail_Items" Association="Self.FK_TB_T_Detail_Items">
+      <End EntitySet="TB_M_Item" Role="TB_M_Item" />
+      <End EntitySet="TB_T_Detail" Role="TB_T_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_to_Sell" Association="Self.FK_to_Sell">
+      <End EntitySet="TB_M_Sell" Role="TB_M_Sell" />
+      <End EntitySet="TB_T_Detail" Role="TB_T_Detail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

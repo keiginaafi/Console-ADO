@@ -1,0 +1,10 @@
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\cobaDatabaseFirst.exe.config
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\cobaDatabaseFirst.exe
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\cobaDatabaseFirst.pdb
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\EntityFramework.dll
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\EntityFramework.xml
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\obj\Debug\cobaDatabaseFirst.csprojResolveAssemblyReference.cache
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\obj\Debug\cobaDatabaseFirst.exe
+c:\users\hilmi\documents\visual studio 2015\Projects\cobaDatabaseFirst\cobaDatabaseFirst\obj\Debug\cobaDatabaseFirst.pdb

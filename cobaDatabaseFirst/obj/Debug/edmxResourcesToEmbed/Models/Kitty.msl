@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cobaArrayModelStoreContainer" CdmEntityContainer="MyContext">
+    <EntitySetMapping Name="TB_M_Item">
+      <EntityTypeMapping TypeName="cobaArrayModel.TB_M_Item">
+        <MappingFragment StoreEntitySet="TB_M_Item">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_M_Sell">
+      <EntityTypeMapping TypeName="cobaArrayModel.TB_M_Sell">
+        <MappingFragment StoreEntitySet="TB_M_Sell">
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_M_Suppliers">
+      <EntityTypeMapping TypeName="cobaArrayModel.TB_M_Suppliers">
+        <MappingFragment StoreEntitySet="TB_M_Suppliers">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_T_Detail">
+      <EntityTypeMapping TypeName="cobaArrayModel.TB_T_Detail">
+        <MappingFragment StoreEntitySet="TB_T_Detail">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_dbo_Items_dbo_Suppliers_Suppliers_Id1" TypeName="cobaArrayModel.FK_dbo_Items_dbo_Suppliers_Suppliers_Id1" StoreEntitySet="TB_M_Item">
+      <EndProperty Name="TB_M_Item">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="TB_M_Suppliers">
+        <ScalarProperty Name="Id" ColumnName="Suppliers_Id" />
+      </EndProperty>
+      <Condition ColumnName="Suppliers_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TB_T_Detail_Items" TypeName="cobaArrayModel.FK_TB_T_Detail_Items" StoreEntitySet="TB_T_Detail">
+      <EndProperty Name="TB_T_Detail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="TB_M_Item">
+        <ScalarProperty Name="Id" ColumnName="TB_M_Items_Id" />
+      </EndProperty>
+      <Condition ColumnName="TB_M_Items_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_to_Sell" TypeName="cobaArrayModel.FK_to_Sell" StoreEntitySet="TB_T_Detail">
+      <EndProperty Name="TB_T_Detail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="TB_M_Sell">
+        <ScalarProperty Name="Id" ColumnName="TB_M_Sell_Id" />
+      </EndProperty>
+      <Condition ColumnName="TB_M_Sell_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
