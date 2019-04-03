@@ -19,6 +19,7 @@ namespace cobaDatabaseFirst
         public DataManipulation() { }
 
         public bool Save(MyContext myContext)
+
         {
             bool status;
             var result = myContext.SaveChanges();

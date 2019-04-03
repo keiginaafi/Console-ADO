@@ -144,13 +144,14 @@ namespace cobaDatabaseFirst
             ControllerTransaction controllerTransaction = new ControllerTransaction(myContext);
             ControllerItem controllerItem = new ControllerItem();
             controllerItem.Get();
-            Console.Write("Kode barang yang ingin dibeli : ");
-            int itemId = Convert.ToInt16(Console.ReadLine());
-            Console.Write("Insert your quantity : ");
-            int quantity = Convert.ToInt16(Console.ReadLine());
+            controllerTransaction.BulkPurchase();
+            //Console.Write("Kode barang yang ingin dibeli : ");
+            //int itemId = Convert.ToInt16(Console.ReadLine());
+            //Console.Write("Insert your quantity : ");
+            //int quantity = Convert.ToInt16(Console.ReadLine());
 
-            //controllerTransaction.SaveDate();
-            controllerTransaction.BeliBarang(itemId, quantity);            
+            ////controllerTransaction.SaveDate();
+            //controllerTransaction.BeliBarang(itemId, quantity);            
             Console.Read();
         }
     }
